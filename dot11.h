@@ -104,8 +104,6 @@ struct Dot11ExtHdr : Dot11Hdr {
     Mac addr2_;
     Mac addr3_;
     uint16_t nums_;
-
-    // Mac addr3() {return Mac(addr3_);}
 };
 
 struct BeaconHdr : Dot11ExtHdr {

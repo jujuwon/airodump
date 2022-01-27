@@ -77,20 +77,14 @@ int main(int argc, char *argv[])
             break;
         }
 
-        // radiotap length
         radiotapHdr = (RadiotapHdr*)packet;
-        // printf("len : %d\n", radiotapHdr->len_);
         packet += radiotapHdr->len_;
         beaconHdr = (BeaconHdr*)packet;
 
         BeaconInfo beaconInfo;
         if(beaconHdr->typeSubtype() == BeaconHdr::TypeSubtype::Beacon) {
-            // printf("type is Beacon\n");
             auto info = beaconInfoMap.find(beaconHdr->addr3_);
-            // iter -> small find
             if(info == beaconInfoMap.end()) {
-                // printf("not exist bssid\n");
-                // beaconInfoMap[beaconHdr->bssId_] = 1;
                 beaconInfoMap.insert({beaconHdr->addr3_, beaconInfo});
             } 
             beaconInfoMap[beaconHdr->addr3_].beacons++;
